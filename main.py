@@ -34,11 +34,11 @@ browser = Browser(
 
 async def main():
     initial_actions = [
-	    {'open_tab': {'url': 'https://docs.google.com/document/d/1xWipCGja65lI_isvLQK3VJSUw_hHJTnrcYFsjH_S8U4/edit?tab=t.0'}}
+	    {'open_tab': {'url': 'https://www.youtube.com/@campusx-official/videos'}}
     ]
     
     agent = Agent(
-        task="Write a letter in Google Docs to my Papa, thanking him for everything, and save the document as a PDF.",
+        task="Get the title and the url of the recent 5 videos of the channel",
         llm=llm,
         use_vision=True,
         browser=browser,
@@ -47,6 +47,8 @@ async def main():
     )
     result = await agent.run()
     print(result.final_result())
+    # data = result.final_result()
+    # parsed: Posts = Posts.model_validate_json(result)
     await browser.close()
 
 asyncio.run(main())
